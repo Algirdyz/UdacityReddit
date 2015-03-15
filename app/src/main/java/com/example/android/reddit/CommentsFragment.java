@@ -39,6 +39,8 @@ public class CommentsFragment extends Fragment implements LoaderManager.LoaderCa
         view = inflater.inflate(R.layout.fragment_comments, container, false);
         mListView = (ListView) view.findViewById(R.id.listview_comments);
         mListView.setAdapter(mCommentsAdapter);
+        view.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.listview_comments).setVisibility(View.GONE);
 
         if(savedInstanceState == null){
             getActivity().getContentResolver().delete(RedditContract.Comments.CONTENT_URI, null, null);
@@ -55,7 +57,6 @@ public class CommentsFragment extends Fragment implements LoaderManager.LoaderCa
             if(postId != null){
                 intentService.putExtra("id", postId);
                 getActivity().startService(intentService);
-                Log.v("TAG", "starting service");
             }
         }
         getLoaderManager().initLoader(COMMENTS_LOADER, null, this);
@@ -76,6 +77,10 @@ public class CommentsFragment extends Fragment implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if(loader.getId() == COMMENTS_LOADER){
             mCommentsAdapter.swapCursor(data);
+            if(data.getCount()!= 0){
+                view.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                view.findViewById(R.id.listview_comments).setVisibility(View.VISIBLE);
+            }
         }
     }
 

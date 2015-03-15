@@ -60,7 +60,6 @@ public class PostsViewFragment extends Fragment implements LoaderManager.LoaderC
 
     private DownloadResultReceiver mReceiver;
 
-    ProgressDialog mDialog;
     private final static String TAG = "PostsViewFragment";
 
     private static final String COMMENTSFRAGMENT_TAG = "CFTAG";
@@ -83,11 +82,9 @@ public class PostsViewFragment extends Fragment implements LoaderManager.LoaderC
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mDialog = new ProgressDialog(getActivity());
-        mDialog.setMessage("Please wait...");
-        mDialog.setCancelable(true);
-        mDialog.show();
-
+        if(savedInstanceState == null){
+            view.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        }
 
         view.findViewById(R.id.dismissButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +108,10 @@ public class PostsViewFragment extends Fragment implements LoaderManager.LoaderC
                     }
                 }
                 else{
-                    Log.v(TAG, "starting service");
                     Intent intent = new Intent(getActivity(), RedditService.class);
+                    intent.putExtra("after", cursor.getString(COLUMN_KIND) + "_" + cursor.getString(COLUMN_ID));
                     getActivity().startService(intent);
+                    view.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -207,11 +205,11 @@ public class PostsViewFragment extends Fragment implements LoaderManager.LoaderC
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if(loader.getId() == LOADER) {
+        if(loader.getId() == LOADER && data.getCount()>0) {
             cursor = data;
             cursor.moveToPosition(cursorPosition);
             buildPost(cursor);
-            mDialog.cancel();
+            view.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         }
     }
 

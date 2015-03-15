@@ -27,7 +27,10 @@
 
         <activity
             android:name=".CommentsActivity"
-            android:label="@string/title_activity_comments" >
+            android:label="@string/title_activity_comments">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.reddit.MainActivity" />
         </activity>
     </application>
 
