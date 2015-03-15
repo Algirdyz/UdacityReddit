@@ -1,0 +1,10 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+    <string name="app_name">Reddit</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="comments"><xliff:g id="num">%d</xliff:g> comments</string>
+    <string name="points"><xliff:g id="num">%d</xliff:g> points</string>
+    <string name="title_activity_comments">CommentsActivity</string>
+</resources>

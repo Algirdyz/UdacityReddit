@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/reddit_blue</item>
+        <item name="colorPrimaryDark">@color/reddit_dark_blue</item>
+    </style>
+
+    <style name="LinkStyle">
+
+    </style>
+
+</resources>
