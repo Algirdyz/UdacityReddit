@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.reddit.Sync.RedditSyncAdapter;
 import com.example.android.reddit.data.RedditContract;
 
 import java.io.InputStream;
@@ -85,7 +86,7 @@ public class PostsViewFragment extends Fragment implements LoaderManager.LoaderC
         if(savedInstanceState == null){
             view.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         }
-
+        RedditSyncAdapter.syncImmediately(getActivity());
         view.findViewById(R.id.dismissButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

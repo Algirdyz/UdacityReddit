@@ -7,4 +7,8 @@
     <string name="comments"><xliff:g id="num">%d</xliff:g> comments</string>
     <string name="points"><xliff:g id="num">%d</xliff:g> points</string>
     <string name="title_activity_comments">CommentsActivity</string>
+
+    <string name="sync_account_type">reddit.example.com</string>
+    <string name="content_authority">com.example.android.reddit</string>
+
 </resources>

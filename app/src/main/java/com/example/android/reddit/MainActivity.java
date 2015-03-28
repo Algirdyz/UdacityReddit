@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.android.reddit.Sync.RedditSyncAdapter;
+
 
 public class MainActivity extends ActionBarActivity {
     private static final String COMMENTSFRAGMENT_TAG = "CFTAG";
@@ -33,10 +35,12 @@ public class MainActivity extends ActionBarActivity {
             mTwoPane = false;
         }
 
-        if (savedInstanceState == null) {
-            Intent intent = new Intent(this, RedditService.class);
-            startService(intent);
-        }
+//        if (savedInstanceState == null) {
+//            Intent intent = new Intent(this, RedditService.class);
+//            startService(intent);
+//        }
+
+        RedditSyncAdapter.initializeSyncAdapter(this);
     }
 
 
